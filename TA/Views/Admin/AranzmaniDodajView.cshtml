@@ -1,0 +1,85 @@
+﻿@model TA.Models.Aranzman
+@{
+    ViewBag.Title = "Aranžmani";
+}
+
+<div class="container interna-navigacija">
+    <div class="row">
+        <div class="col-md-4"><input type="button" value="Dodaj aranžman" class="btn-link" id="btnToggle" /></div>
+        <div class="col-md-4 col-md-offset-4 text-right">
+            @Html.ActionLink("Destinacije", "AdminDestinacijeView", "Admin", new { @class = "btn-link" })
+            @Html.ActionLink("Hoteli", "AdminHoteliView", "Admin", new { @class = "btn-link" })
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row row-msg">
+        @if (TempData["Izmena"] != null)
+        {
+            <div class="alert alert-success">@TempData["Izmena"]</div>
+        }
+        @if (TempData["Obrisan"] != null)
+        {
+            <div class="alert alert-success">@TempData["Obrisan"]</div>
+        }
+        @if (TempData["aranzmanDodat"] != null)
+        {
+            <div class="alert alert-success">@TempData["aranzmanDodat"]</div>
+        }
+        @if(TempData["greskaUBrisanju"] != null)
+        {
+            <div class="alert alert-warning greska">@TempData["greskaUBrisanju"]</div>
+        }
+    </div>
+</div>
+<div class="container prikaz-aranzmana">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4>Spisak aranžmana:</h4>
+        </div>
+        @Html.Partial("_ParcijalniPrikaziAranzmane")
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Dodaj aranžman:</h4>
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("AranzmaniDodajView", "Admin", FormMethod.Post, new { @class = "form" }))
+                    {
+                        <div class="form-group">
+                            <p class="bold">Smeštaj</p>
+                            @Html.DropDownList("listaHotela", (IEnumerable<SelectListItem>)ViewBag.hoteli, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <p class="bold">Vrsta usluge</p>
+                            @Html.DropDownList("listaUsluga", (IEnumerable<SelectListItem>)ViewBag.usluge, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <p class="bold">Termin putovanja</p>
+                            @Html.DropDownList("listaTermina", (IEnumerable<SelectListItem>)ViewBag.termini, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Cena, "Cena aranžmana")
+                            @Html.TextBoxFor(m => m.Cena, null, new { @class = "form-control", placeholder = "Cena aranžmana" })
+                            @Html.ValidationMessageFor(m => m.Cena, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Raspolozivost, "Raspoloživost")
+                            @Html.TextBoxFor(m => m.Raspolozivost, null, new { @class = "form-control", placeholder = "Raspoloživost" })
+                            @Html.ValidationMessageFor(m => m.Raspolozivost, null, new { @class = "text-danger" })
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Dodaj" />
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/btnToggle.js"></script>

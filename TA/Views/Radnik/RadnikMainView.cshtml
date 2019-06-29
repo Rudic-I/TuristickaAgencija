@@ -1,0 +1,20 @@
+﻿@using TA.Models;
+@model TA.Models.Korisnik
+
+@{
+    ViewBag.Title = "Aranžmani";
+}
+
+<div class="container text-right interna-navigacija">
+    @Html.ActionLink("Rezervacije", "RezervacijePrikaziView", "Radnik", new { @class = "btn-link" })
+    @Html.ActionLink("Korisnici", "KorisniciPrikaziView", "Radnik", new { @class = "btn-link" })
+</div>
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4>Spisak aranžmana:</h4>
+        </div>
+        @Html.Partial("_ParcijalniPrikaziAranzmane")
+    </div>
+</div>

@@ -1,0 +1,33 @@
+﻿@using TA.Models;
+
+@{
+    ViewBag.Title = "TrioTravel";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+<div class="container" id="ponuda">
+    <nav>
+        <ul class="list-inline list-unstyled navigacija">
+            <li><a href="#ponuda">Ponuda aranžmana</a></li> |
+            <li><a href="#onama">O nama</a></li> |
+            <li>@Html.ActionLink("Uloguj se", "Login", "Login")</li>
+        </ul>
+    </nav>
+</div>
+<hr />
+<div class="container zemlje">
+    <div class="row">
+        <div>
+            <ul class="list-inline list-unstyled">
+                @foreach (var item in Home.spisakZemalja())
+                {
+                    <li class="zemlje-link">@Html.ActionLink(item, "PrikaziPonudu", new { zemlja = item })</li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_ParcijalniPrikaziPonudu")
+
+<script src="~/Scripts/efekti.js"></script>

@@ -1,0 +1,43 @@
+﻿@using TA.Models;
+
+@model IEnumerable<TA.Models.Aranzman>
+
+<div class="container">
+    <div class="row">
+        <div class="panel panel-primary panel-custom">
+            <div class="panel-body">
+                <h2>@ViewData["nazivZemlje"]</h2>
+            </div>
+        </div>
+        @if (Home.SpisakPonudaNaKlik(@ViewData["nazivZemlje"].ToString()).Count() == 0)
+        {
+            <h3 class="nema-ponuda">Ponude za ovu destinaciju su u pripremi.</h3>
+        }
+        else
+        {
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <td>Grad</td>
+                        <td>Hotel</td>
+                        <td>Usluga</td>
+                        <td>Termin</td>
+                        <td>Cena u evrima</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Hotel.Destinacija.Grad</td>
+                            <td>@item.Hotel.Naziv</td>
+                            <td>@item.Usluga.VrstaUsluge</td>
+                            <td>@item.Termin.Pocetak.Day. @item.Termin.Pocetak.Month. do @item.Termin.Kraj.Day. @item.Termin.Kraj.Month.</td>
+                            <td>@item.Cena</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

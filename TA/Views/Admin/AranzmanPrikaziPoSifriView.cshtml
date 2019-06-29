@@ -1,0 +1,52 @@
+﻿@model TA.Models.AranzmanViewModel
+
+@{
+    ViewBag.Title = "Aranžman " + Model.SifraAranzmana;
+}
+
+<div class="container text-right interna-navigacija">
+    @Html.ActionLink("Aranžmani", "AranzmaniDodajView", "Admin", new { @class = "btn-link" })
+    @Html.ActionLink("Hoteli", "AdminHoteliView", "Admin", new { @class = "btn-link" })
+    @Html.ActionLink("Destinacije", "AdminDestinacijeView", "Admin", new { @class = "btn-link" })
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Izmeni aranžman</h4>
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("AranzmanIzmeni", "Admin", FormMethod.Post, new { @class = "form" }))
+                    {
+                        @Html.HiddenFor(m => m.SifraAranzmana, Model.SifraAranzmana)
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.NazivHotela, "Hotel")
+                            @Html.TextBoxFor(m => m.NazivHotela, Model.NazivHotela, new { @class = "form-control", @disabled = "disabled" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.VrstaUsluge, "Vrsta usluge")
+                            @Html.TextBoxFor(m => m.VrstaUsluge, Model.VrstaUsluge, new { @class = "form-control", @disabled = "disabled" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.TerminPutovanja, "Termin putovanja")
+                            @Html.TextBoxFor(m => m.TerminPutovanja, Model.TerminPutovanja, new { @class = "form-control", @disabled = "disabled" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Cena, "Cena")
+                            @Html.TextBoxFor(m => m.Cena, Model.Cena.ToString(), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Cena, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Raspolozivost, "Raspoloživost")
+                            @Html.TextBoxFor(m => m.Raspolozivost, Model.Raspolozivost.ToString(), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Raspolozivost, null, new { @class = "text-danger" })
+                        </div>
+                        <input type="submit" class="btn btn-primary" name="BtnSubmit" value="Izmeni" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

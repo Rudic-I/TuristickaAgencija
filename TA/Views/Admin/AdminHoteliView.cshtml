@@ -1,0 +1,90 @@
+﻿@using TA.Models;
+@model TA.Models.Hotel
+
+@{
+    ViewBag.Title = "Hoteli";
+}
+
+<div class="container text-right interna-navigacija">
+    @Html.ActionLink("Aranžmani", "AranzmaniDodajView", "Admin", new { @class = "btn-link" })
+    @Html.ActionLink("Destinacije", "AdminDestinacijeView", "Admin", new { @class = "btn-link" })
+</div>
+
+<div class="container">
+    <div class="row row-msg">
+        @if (TempData["dodatHotel"] != null)
+        {
+            <div class="alert alert-success">@TempData["dodatHotel"]</div>
+        }
+        @if (TempData["postojiHotel"] != null)
+        {
+            <div class="alert alert-warning greska">@TempData["postojiHotel"]</div>
+        }
+    </div>
+</div>
+<div class="container">
+    <span>@ViewBag.Greska</span>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h4>Hoteli</h4></div>
+                <div class="panel-body">
+                    @if (Admin.PrikaziHotele().Count == 0)
+                    {
+                        <p>Trenutno nemamo nijedan hotel u ponudi.</p>
+                    }
+                    else
+                    {
+                        int brojac = 1;
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <td>Naziv</td>
+                                    <td>Destinacija</td>
+                                    <td>Broj zvezdica</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Hotel hotel in Admin.PrikaziHotele())
+                                {
+                                    <tr>
+                                        <td>@hotel.Naziv</td>
+                                        <td>@hotel.Destinacija.Grad, @hotel.Destinacija.Zemlja</td>
+                                        <td>@hotel.BrojZvezdica</td>
+                                    </tr>
+                                    brojac++;
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h4>Dodaj hotel</h4></div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("DodajHotel", "Admin", FormMethod.Post, new { @class = "form" }))
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(h => h.Naziv, "Naziv hotela")
+                            @Html.TextBoxFor(h => h.Naziv, null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(h => h.Naziv, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(h => h.BrojZvezdica, "Broj zvezdica")
+                            @Html.TextBoxFor(h => h.BrojZvezdica, null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(h => h.BrojZvezdica, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <p>Destinacija</p>
+                            @Html.DropDownList("listaDestinacijaID", (IEnumerable<SelectListItem>)ViewBag.destinacije, new { @class = "form-control" })
+                        </div>
+                        <input type="submit" value="Dodaj" class="btn btn-primary" />
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

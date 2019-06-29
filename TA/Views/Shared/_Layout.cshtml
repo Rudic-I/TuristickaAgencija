@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <link href="~/Content/stilizacija.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <h1>TrioTravel</h1>
+        <div class="container text-right">
+            <span>Prijavljeni ste kao: @Session["korisnik"] | </span>
+            <span>@Html.ActionLink("Odjava", "Logout", "Login")</span>
+        </div>
+    </header>
+    <hr />
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <hr />
+    <footer id="onama">
+        <h4>Turistička agencija TrioTravel</h4>
+        <h5>Izrada sajta: Branislava Mladenović, Maja Samardžija, Ivana Rudić</h5>
+        <p>&copy; 2019</p>
+    </footer>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/validacija.js"></script>
+    <script src="~/Scripts/fotterBottom.js"></script>
+</body>
+
+</html>

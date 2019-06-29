@@ -1,0 +1,48 @@
+﻿@using TA.Models;
+@model TA.Models.AranzmanViewModel
+@{
+    ViewBag.Title = "TrioTravel";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+<div class="container text-right identifikacija">
+    <span>Prijavljeni ste kao: @Session["korisnik"] | </span>
+    <span>@Html.ActionLink("Odjava", "Logout", "Login")</span>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h6>Prikaz Vaše rezervacije </h6>
+                </div>
+                <table class="table table-condensed table-hover">
+                    <tr>
+                        <td>Destinacija:</td>
+                        <td>@Model.Destinacija</td>
+                    </tr>
+                    <tr>
+                        <td>Mesto:</td>
+                        <td>@Model.Mesto</td>
+                    </tr>
+                    <tr>
+                        <td>Hotel:</td>
+                        <td>@Model.NazivHotela</td>
+                    </tr>
+                    <tr>
+                        <td>Vrsta usluge:</td>
+                        <td>@Model.VrstaUsluge</td>
+                    </tr>
+                    <tr>
+                        <td>Termin putovanja:</td>
+                        <td>@Model.TerminPutovanja</td>
+                    </tr>
+                    <tr>
+                        <td>Cena:</td>
+                        <td>@Model.Cena EUR</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

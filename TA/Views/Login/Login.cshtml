@@ -1,0 +1,35 @@
+﻿@model TA.Models.Korisnik
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+
+<div class="container">
+    <h5 class="text-left">@Html.ActionLink("Povratak na početnu stranicu", "Index", "Home")</h5>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-primary" id="panel-login">
+                <div class="panel-heading">Login</div>
+                <div class="panel-body">
+                    <div>
+                        @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "form" }))
+                        {
+                            <label class="greska">@ViewBag.LoginGreska</label>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.KorisnickoIme, "Korisničko ime")
+                                @Html.TextBoxFor(m => m.KorisnickoIme, null, new { @class = "form-control", onblur = "provera(event)" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Lozinka, "Lozinka")
+                                @Html.PasswordFor(m => m.Lozinka, new { @class = "form-control", onblur = "provera(event)" })
+                            </div>
+                            <input type="button" value="Prijava" class="btn btn-primary" onclick="proveraLogovanja()" id="btnSubmit" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

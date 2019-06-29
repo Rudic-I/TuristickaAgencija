@@ -1,0 +1,64 @@
+﻿@model TA.Models.RezervacijaViewModel
+
+@{
+    ViewBag.Title = "Rezervacija";
+}
+
+<div class="container text-right interna-navigacija">
+    @Html.ActionLink("Aranžmani", "RadnikMainView", "Radnik", new { @class = "btn-link" })
+    @Html.ActionLink("Rezervacije", "RezervacijePrikaziView", "Radnik", new { @class = "btn-link" })
+    @Html.ActionLink("Korisnici", "KorisniciPrikaziView", "Radnik", new { @class = "btn-link" })
+</div>
+
+<div class="container">
+    <div class="row row-msg">
+        @if(@TempData["PogresanID"] != null)
+        {
+            <div class="alert alert-warning greska">@TempData["PogresanID"]</div>
+        }
+    </div>
+</div>
+@if (ViewBag.Greska == null)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h4>Rezervacija</h4></div>
+                    <div class="panel-body">
+                        @using (Html.BeginForm("AranzmanRezervisi", "Radnik", FormMethod.Post, new { @class = "form" }))
+                        {
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.AranzmanID, "Šifra aranzmana")
+                                @Html.TextBoxFor(m => m.AranzmanID, Model.AranzmanID.ToString(), new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.RezervacijaID, "Šifra rezervacije")
+                                @Html.TextBoxFor(m => m.RezervacijaID, null, new { @class = "form-control", @id="RezervacijaID", onblur="provera(event)"})
+                                <label id="lblRezervacijaID" class="greska"></label>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Ime, "Ime klijenta")
+                                @Html.TextBoxFor(m => m.Ime, null, new { @class = "form-control stringText", onblur = "provera(event)" })
+                                <label id="lblIme" class="greska"></label>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.KorisnickoIme, "Korisničko ime")
+                                @Html.TextBoxFor(m => m.KorisnickoIme, null, new { @class = "form-control stringText", onblur = "provera(event)" })
+                                <label id="lblKorisnickoIme" class="greska"></label>
+                            </div>
+                            <input type="button" value="Napravi rezervaciju" class="btn btn-primary" onclick="proveraRezervacije()" id="btnSubmit"/>
+                        }
+                    </div>
+                </div>
+            </div>
+            @Html.Partial("_ParcijalniPrikaziRezervacije")
+        </div>
+    </div>
+    
+}
+else
+{
+    <div class="alert alert-warning greska">@ViewBag.Greska</div>
+}
+

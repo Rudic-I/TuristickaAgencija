@@ -1,0 +1,166 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Caveat:400,700');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.greska {
+    color: #CD5C5C;
+}
+
+body {
+    background-image: url('../Images/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+h1, h2, h4 {
+    font-family: Caveat;
+    font-weight: 700;
+    color: #e1e6f7;
+}
+
+h1 {
+    font-size: 70px;
+}
+
+h2 {
+    font-size: 60px;
+}
+
+h3 {
+    color: #337ab7;
+    font-weight: 700;
+}
+
+.nema-ponuda {
+        background-color: rgba(255,255,255,0.8);
+        display: inline-block;
+        border-radius: 5px;
+    }
+
+h5 {
+    font-size: 16px;
+    color: #337ab7;
+}
+    h5 a {
+        color: #e1e6f7;
+    }
+
+h6{
+    font-size: 16px;
+}
+
+header, footer {
+    color: #e1e6f7;
+    text-align: center;
+}
+
+ul {
+    text-align: center;
+    color: #fff;
+}
+
+    ul li a {
+        color: #e1e6f7;
+        font-size: 18px;
+        text-decoration: none;
+    }
+
+a:hover {
+    text-decoration: none;
+    color: #e1e6f7;
+}
+
+.navbar-fixed-top {
+    background-color: #e1e6f7;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #b8c5f2;
+}
+
+    .navbar-fixed-top a, .navbar-fixed-top ul {
+        color: #337ab7;
+    }
+
+.zemlje {
+    margin-top: 45px;
+}
+
+.zemlje-link {
+    font-size: 23px;
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    margin: 5px;
+    background-color: rgba(225, 230, 247,0.1);
+}
+
+    .zemlje-link:hover {
+        background-color: #e1e6f7;
+        color: darkblue;
+    }
+
+        .zemlje-link:hover a {
+            color: darkslateblue;
+            text-decoration: none;
+        }
+
+
+
+.panel {
+    background-color: transparent;
+}
+
+.panel-custom {
+    border: none;
+    box-shadow: none;
+}
+
+.table {
+    text-align: center;
+}
+
+table thead tr {
+    font-weight: 700;
+}
+
+thead {
+    background-color: #b8c5f2;
+}
+
+tbody {
+    background-color: #e1e6f7;
+}
+
+#panel-login {
+    background-color: #fff;
+    margin-top: 30px;
+}
+
+#onama {
+    width: 100%;
+    background-color: rgba(225, 230, 247,0.6);
+    color: #337ab7;
+    font-size: 18px;
+    padding: 25px;
+    margin-top: 35px;
+}
+
+#onama h4 {
+    color: #337ab7;
+    font-size: 30px;
+}
+
+#onama h5 {
+    font-size: 20px;
+}
+
+.identifikacija {
+    color: #e1e6f7;
+}
+    .identifikacija a {
+        color: #e1e6f7;
+    }

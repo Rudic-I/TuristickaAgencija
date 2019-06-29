@@ -1,0 +1,85 @@
+﻿@using TA.Models
+
+
+<div class="panel-body">
+    @if (Admin.PrikaziAranzmane().Count == 0)
+    {
+        <p>Trenutno nema nijednog aranžmana</p>
+    }
+
+    else
+    {
+        if (Session["korisnik"].ToString() == "admin")
+        {
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <td>Smeštaj</td>
+                        <td>Vrsta usluge</td>
+                        <td>Termin</td>
+                        <td>Cena u evrima</td>
+                        <td>Raspoloživost</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (AranzmanViewModel aranzman in Admin.PrikaziAranzmane())
+                    {
+                        <tr>
+                            <td>@aranzman.NazivHotela, @aranzman.Mesto, @aranzman.Destinacija</td>
+                            <td>@aranzman.VrstaUsluge</td>
+                            <td>@aranzman.TerminPutovanja</td>
+                            <td>@aranzman.Cena</td>
+                            <td>@aranzman.Raspolozivost</td>
+                            <td>
+                                <span>@Html.ActionLink("Izmeni", "AranzmanPrikaziPoSifri", new { sifra = aranzman.SifraAranzmana }) |</span>
+                                <span onclick="show(this)" data-id=@aranzman.SifraAranzmana class="span-link">Obriši</span>
+                                <span class="display-none">@Html.ActionLink("Obriši", "AranzmanObrisi", new { sifra = aranzman.SifraAranzmana }, new { @id = aranzman.SifraAranzmana, @class = "linkovi btn btn-danger" })</span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        if (Session["korisnik"].ToString() == "radnik")
+        {
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <td>Smeštaj</td>
+                        <td>Vrsta usluge</td>
+                        <td>Termin</td>
+                        <td>Cena u evrima</td>
+                        <td>Raspoloživost</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (AranzmanViewModel aranzman in Admin.PrikaziAranzmane())
+                    {
+                        <tr>
+                            <td>@aranzman.NazivHotela, @aranzman.Mesto, @aranzman.Destinacija</td>
+                            <td>@aranzman.VrstaUsluge</td>
+                            <td>@aranzman.TerminPutovanja</td>
+                            <td>@aranzman.Cena</td>
+                            <td>@aranzman.Raspolozivost</td>
+                            <td>@Html.ActionLink("Rezerviši", "AranzmanRezervisi", new { sifra = aranzman.SifraAranzmana })</td>
+                        </tr>
+                     }
+                </tbody>
+            </table>
+         }
+    }
+</div>
+<div class="modal">
+    <div class="modal-content">
+        <div class="panel panel-danger">
+            <div class="panel-heading"><span class="close cursor">&times;</span></div>
+            <div class="panel-body">
+                <h4>Da li ste sigurni da želite da obrišete aranžman?</h4>
+                <div class="modal-content-btn"></div>
+            </div>
+        </div>
+    </div>
+</div>
+

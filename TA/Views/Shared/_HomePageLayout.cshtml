@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <link href="~/Content/pocetna.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <h1>TrioTravel</h1>
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+    <footer id="onama">
+        <h4>Turistička agencija TrioTravel</h4>
+        <h5>Izrada: Branislava Mladenović, Maja Samardžija, Ivana Rudić</h5>
+        <p>&copy; 2019</p>
+    </footer>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/validacija.js"></script>
+    <script src="~/Scripts/fotterBottom.js"></script>
+</body>
+</html>

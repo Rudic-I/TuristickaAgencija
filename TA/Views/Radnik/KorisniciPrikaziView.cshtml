@@ -1,0 +1,48 @@
+﻿@using TA.Models;
+@{
+    ViewBag.Title = "Korisnici";
+}
+
+<div class="container text-right interna-navigacija">
+    @Html.ActionLink("Aranžmani", "RadnikMainView", "Radnik", new { @class = "btn-link" })
+    @Html.ActionLink("Rezervacije", "RezervacijePrikaziView", "Radnik", new { @class = "btn-link" })
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h4>Korisnici</h4></div>
+                <div class="panel-body">
+                    @if (Radnik.PrikaziKorisnike().Count == 0)
+                    {
+                        <p>Trenutno nemamo nijednog klijenta.</p>
+                    }
+                    else
+                    {
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <td>Ime</td>
+                                    <td>Korisničko ime</td>
+                                    <td>Šifra aranžmana</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Korisnik korisnik in Radnik.PrikaziKorisnike())
+                                {
+                                    <tr>
+                                        <td>@korisnik.Ime</td>
+                                        <td>@korisnik.KorisnickoIme</td>
+                                        <td>@korisnik.KorisnikID</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

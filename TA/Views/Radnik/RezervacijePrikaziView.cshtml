@@ -1,0 +1,34 @@
+﻿@using TA.Models
+@{
+    ViewBag.Title = "Rezervacije";
+}
+
+<div class="container text-right interna-navigacija">
+    @Html.ActionLink("Aranžmani", "RadnikMainView", "Radnik", new { @class = "btn-link" })
+    @Html.ActionLink("Korisnici", "KorisniciPrikaziView", "Radnik", new { @class = "btn-link" })
+</div>
+
+<div class="container">
+    <div class="row row-msg">
+        @if (TempData["Obrisan"] != null)
+        {
+            if (Convert.ToBoolean(TempData["Obrisan"]))
+            {
+                <div class="alert alert-success">Uspešno otkazana rezervacija.</div>
+            }
+            if (!Convert.ToBoolean(TempData["Obrisan"]))
+            {
+                <div class="alert alert-success">Rezervacija nije otkazana.</div>
+            }
+        }
+        @if (TempData["rezervisan"] != null)
+        {
+                <div class="alert alert-success">@TempData["rezervisan"]</div>
+        }
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        @Html.Partial("_ParcijalniPrikaziRezervacije")
+    </div>
+</div>
